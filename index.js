@@ -69,11 +69,13 @@ let cardsEl = document.getElementById('cards-el');
 let playerEl = document.getElementById('player-el');
 let dealerSum = 0;
 let dealerCards = [];
+let dealerSumEl = document.getElementById('dealer-sum-el');
+let dealerCardsEl = document.getElementById('dealer-cards-el');
 
 playerEl.textContent = player.name + ': $' + player.chips;
 
 function getRandomCard() {
-  let randomCardIndex = Math.floor(Math.random() * 52);
+  let randomCardIndex = Math.floor(Math.random() * deck.length);
   deck.splice(randomCardIndex, 1);
   return deck[randomCardIndex];
 }
@@ -98,6 +100,15 @@ function startGame() {
 }
 
 function renderGame() {
+  dealerCardsEl.textContent = '';
+  for (let i = 0; i < dealerCards.length; i++) {
+    let path = `images/${dealerCards[i].value + dealerCards[i].suit}.png`;
+    dealerCardsEl.innerHTML += `
+          <img src="${path}" class="class-img">
+      `;
+  }
+  dealerSumEl.textContent = "Dealer's sum: " + dealerSum;
+
   cardsEl.textContent = '';
   for (let i = 0; i < cards.length; i++) {
     let path = `images/${cards[i].value + cards[i].suit}.png`;
@@ -126,5 +137,33 @@ function newCard() {
     cards.push(card);
     sum = getSum(cards);
     renderGame();
+  }
+}
+
+function declareWinner() {
+  if (sum > dealerSum || dealerSum > 21) {
+    messageEl.textContent = 'You won';
+  } else if (dealerSum > sum) {
+    messageEl.textContent = 'The dealer won';
+  } else {
+    messageEl.textContent = "It's a tie";
+  }
+}
+
+function newDealerCard() {
+  let card = getRandomCard();
+  dealerCards.push(card);
+  dealerSum = getSum(dealerCards);
+  renderGame();
+  if (dealerSum < 17) {
+    newDealerCard();
+  } else {
+    declareWinner();
+  }
+}
+
+function stand() {
+  if (isAlive) {
+    newDealerCard();
   }
 }
