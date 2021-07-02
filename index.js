@@ -53,15 +53,11 @@ let deck = [
   { value: 'K', suit: 'H', numValue: 10 },
 ];
 
-let player = {
-  name: 'Per',
-  chips: 200,
-};
-
 let cards = [];
 let sum = 0;
 let hasBlackJack = false;
 let isAlive = false;
+let hasDealtCards = false;
 let message = '';
 let messageEl = document.getElementById('message-el');
 let sumEl = document.getElementById('sum-el');
@@ -71,8 +67,18 @@ let dealerSum = 0;
 let dealerCards = [];
 let dealerSumEl = document.getElementById('dealer-sum-el');
 let dealerCardsEl = document.getElementById('dealer-cards-el');
+let bet = 0;
+let betEl = document.getElementById('bet-el');
 
-playerEl.textContent = player.name + ': $' + player.chips;
+let player = {
+  name: 'Per',
+  chips: 200,
+};
+
+function renderPlayer() {
+  playerEl.textContent = player.name + ': $' + player.chips;
+}
+renderPlayer();
 
 function getRandomCard() {
   let randomCardIndex = Math.floor(Math.random() * deck.length);
@@ -88,8 +94,24 @@ function getSum(cardsArray) {
   return cardsSum;
 }
 
-function startGame() {
+function resetGame() {
+  dealerCards = [];
+  dealerCards = 0;
+  dealerCardsEl.innerHTML = '';
+  dealerSumEl.textContent = '';
+  cards = [];
+  sum = 0;
+  cardsEl.innerHTML = '';
+  sumEl.textContent = '';
+  messageEl.textContent = 'Place your bets!';
+  bet = 0;
+  betEl.textContent = '';
+  hasDealtCards = false;
+}
+
+function dealCards() {
   isAlive = true;
+  hasGameStarted = true;
   let firstCard = getRandomCard();
   let secondCard = getRandomCard();
   cards = [firstCard, secondCard];
@@ -143,10 +165,14 @@ function newCard() {
 function declareWinner() {
   if (sum > dealerSum || dealerSum > 21) {
     messageEl.textContent = 'You won';
+    player.chips += bet * 2;
+    renderPlayer();
   } else if (dealerSum > sum) {
     messageEl.textContent = 'The dealer won';
   } else {
     messageEl.textContent = "It's a tie";
+    player.chips += bet;
+    renderPlayer();
   }
 }
 
@@ -165,5 +191,14 @@ function newDealerCard() {
 function stand() {
   if (isAlive) {
     newDealerCard();
+  }
+}
+
+function placeBet() {
+  if (player.chips >= 10 && hasDealtCards === false) {
+    bet += 10;
+    player.chips -= 10;
+    betEl.textContent = 'Bet: $' + bet;
+    renderPlayer();
   }
 }

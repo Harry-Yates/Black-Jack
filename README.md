@@ -1,1 +1,1 @@
-Black Jack came crated following the Scrimba course.
+Black Jack game created following the Scrimba learn JS course.
