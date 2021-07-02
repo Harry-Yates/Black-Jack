@@ -4,16 +4,21 @@
   </head>
   <body>
     <h1>Blackjack</h1>
-    <p id="dealer-cards-el"></p>
-    <p id="dealer-sum-el"></p>
-    <p id="message-el">Want to play a round?</p>
-    <p id="cards-el"></p>
-    <p id="sum-el"></p>
-    <button onclick="startGame()">START GAME</button>
-    <button onclick="newCard()">NEW CARD</button>
-    <button onclick="stand()">STAND</button>
-    <button onclick="placeBet()">BET</button>
-    <p id="player-el"></p>
+    <div class="container">
+      <p id="dealer-cards-el"></p>
+      <p id="dealer-sum-el"></p>
+      <p id="message-el">Want to play a round?</p>
+      <p id="cards-el"></p>
+      <p id="sum-el"></p>
+      <p id="bet-el"></p>
+      <div class="btncontainer"></div>
+      <button onclick="placeBet()">BET</button>
+      <button onclick="dealCards()">DEAL</button>
+      <button onclick="newCard()">DRAW CARD</button>
+      <button onclick="stand()">CHECK</button>
+      <button onclick="resetGame()">RESET GAME</button>
+      <p id="player-el"></p>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>

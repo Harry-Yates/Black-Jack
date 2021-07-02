@@ -71,12 +71,12 @@ let bet = 0;
 let betEl = document.getElementById('bet-el');
 
 let player = {
-  name: 'Per',
+  name: 'Player 1',
   chips: 200,
 };
 
 function renderPlayer() {
-  playerEl.textContent = player.name + ': $' + player.chips;
+  playerEl.textContent = player.name + ': £' + player.chips;
 }
 renderPlayer();
 
@@ -155,7 +155,6 @@ function renderGame() {
 function newCard() {
   if (isAlive === true && hasBlackJack === false) {
     let card = getRandomCard();
-    // sum += card
     cards.push(card);
     sum = getSum(cards);
     renderGame();
@@ -198,7 +197,7 @@ function placeBet() {
   if (player.chips >= 10 && hasDealtCards === false) {
     bet += 10;
     player.chips -= 10;
-    betEl.textContent = 'Bet: $' + bet;
+    betEl.textContent = 'Bet: £' + bet;
     renderPlayer();
   }
 }

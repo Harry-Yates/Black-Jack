@@ -1,17 +1,41 @@
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', Arial, sans-serif;
-  background-image: url('images/table.png');
+  background-repeat: no-repeat;
   background-size: cover;
   font-weight: bold;
   color: white;
+  background: rgb(46, 46, 46);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0, auto;
+}
+
+.container {
+  max-width: 300px;
+  border: rgb(50, 246, 24) 2px solid;
+  border-radius: 10px;
+}
+
+.btncontainer {
+  display: flex;
 }
 
 .class-img {
   width: 50px;
 }
 h1 {
-  color: goldenrod;
+  color: rgb(213, 208, 208);
+  font-size: 50px;
+  margin: 0, auto;
+  padding-right: 30px;
+}
+
+p {
+  color: wheat;
 }
 
 #message-el {
@@ -19,9 +43,9 @@ h1 {
 }
 
 button {
-  color: #016f32;
+  color: wheat;
   width: 150px;
-  background: goldenrod;
+  background: rgb(173, 172, 169);
   padding-top: 5px;
   padding-bottom: 5px;
   font-weight: bold;
