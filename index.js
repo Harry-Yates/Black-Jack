@@ -71,7 +71,7 @@ let bet = 0;
 let betEl = document.getElementById('bet-el');
 
 let player = {
-  name: 'Player 1',
+  name: 'Cash',
   chips: 200,
 };
 

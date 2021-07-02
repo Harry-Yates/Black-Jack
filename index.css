@@ -34,12 +34,17 @@ h1 {
   padding-right: 30px;
 }
 
+H1:hover {
+  color: wheat;
+}
+
 p {
   color: wheat;
 }
 
 #message-el {
-  font-style: italic;
+  font-style: bold;
+  font-size: 15px;
 }
 
 button {
@@ -53,4 +58,12 @@ button {
   border-radius: 2px;
   margin-bottom: 2px;
   margin-top: 2px;
+}
+
+button:hover,
+:focus {
+  color: rgb(173, 172, 169);
+  width: 155px;
+  background: wheat;
+  outline: none;
 }
